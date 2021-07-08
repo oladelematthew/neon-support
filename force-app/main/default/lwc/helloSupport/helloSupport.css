@@ -1,0 +1,47 @@
+/* .THIS.btn{
+    background-color: purple;
+}
+
+.helloSupport{
+    background: var(--lwc-colorBackgroundAltInverse);
+    color: var(--lwc-colorBackgroundAltInverse);
+} */
+
+.mainContainer{
+    --sds-c-card-color-background: #63449B;
+    --sds-c-card-color-border: #63449B;
+}
+
+lightning-button.button {
+	--sds-c-button-neutral-color-background:#ffffff;
+    --sds-c-button-neutral-color-background-hover:#E63486;
+    --sds-c-button-neutral-color-border:#E63486;
+    --sds-c-button-neutral-color-border-hover:#ffffff;
+    --sds-c-button-text-color: #63449B;
+    --sds-c-button-text-color-hover: #ffffff;
+    --sds-c-button-padding: 2px;
+}
+
+/* .button{
+    --sds-c-button-shadow-focus:white;
+    --sds-c-button-inverse-shadow-focus:rgb(148, 72, 114);
+    --sds-c-button-neutral-color-background:#E63486;
+    --sds-c-button-neutral-color-background-hover:white;
+    --sds-c-button-neutral-color-border:#63449B;
+    --sds-c-button-neutral-border-radius:0px;
+    --sds-c-button-neutral-color-border-hover:#b82d6e;
+} */
+
+.headerContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerButtons{
+    margin-right: 15px;
+}
+
+.caseForm1{
+    display: flex;
+    justify-content: space-between;
+}

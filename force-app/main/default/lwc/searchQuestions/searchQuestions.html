@@ -1,0 +1,19 @@
+<template>
+    <div style="background-color: #63449B; border: 0px; padding: 10px; margin-bottom: 10px">
+        <div style="background-color: #63449B;">
+            <span style="color: aliceblue;">Search from our bucket of FAQs or submit a new ticket.</span>
+            <span style="color: aliceblue;">'enter' your question here</span>
+            <lightning-input type="search"  class="slds-m-bottom_small" label="" value={searchKey} onchange={handleKeyChange}></lightning-input>
+            <lightning-button class="slds-align_absolute-center slds-p-bottom_medium" name="Search" onclick={searchCases} label="Search Questions"> </lightning-button>         
+        </div>
+        <template if:true={showCases}>
+            <lightning-datatable
+                            key-field="Id"
+                            data={cases}
+                            columns={columns}
+                            onclick={handleclick}
+                            style="background-color: rgb(76,26,136);">
+            </lightning-datatable>
+        </template>
+    </div>
+</template>

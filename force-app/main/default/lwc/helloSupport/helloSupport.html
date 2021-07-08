@@ -1,0 +1,173 @@
+<template>
+    <lightning-card class="mainContainer" title="helloSupport!" icon-name="standard:service_resource" style="color: white;">
+       <div class="headerContainer">
+        <div class="slds-m-around_medium">
+           <template for:each={contacts} for:item="contact">
+              <div key={contact.Id} style="color: #dddddd;">
+                 {contact.Name}, {contact.Title}
+              </div>
+           </template>
+        </div>
+        <div class="headerButtons">
+        <div>
+         <lightning-button label="Create Case" title="Create Case" class="button" onclick={openModal}></lightning-button>
+         <lightning-button label="My Cases" title="My Cases" class="button" onclick={openModal}></lightning-button>
+        </div>
+      </div>
+      </div>
+     </lightning-card>
+     <!--Use template if:true to display/hide popup based on isCreateCasesModalOpen value--> 
+    <template if:true={isCreateCasesModalOpen}>
+      <!-- Modal/Popup Box LWC starts here -->
+      <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+          <div class="slds-modal__container">
+              <!-- Modal/Popup Box LWC header here -->
+              
+              <header class="slds-modal__header">
+                  <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                      <lightning-icon icon-name="utility:close"
+                          alternative-text="close"
+                          variant="inverse"
+                          size="small" ></lightning-icon>
+                      <span class="slds-assistive-text">Close</span>
+                  </button>
+                  <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">New Case</h2>
+              </header>
+              <!-- Modal/Popup Box LWC body starts here -->
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                 <lightning-record-edit-form record-id="" object-api-name="Case">
+                  <lightning-messages></lightning-messages>
+                  <h3 class="slds-section__title slds-theme--shade primaryPaletteBorder test-id__section-header-container" data-aura-rendered-by="478:1662;a">
+                     <span class="test-id__section-header-title section-header-title slds-p-horizontal--small slds-truncate" data-aura-rendered-by="480:1662;a">Case Information</span>
+                  </h3>
+                  <div class="caseForm1">
+                     <div> 
+                        <lightning-input-field field-name="OwnerId"></lightning-input-field>
+                        <lightning-input-field field-name="CaseNumber"></lightning-input-field>
+                        <lightning-input-field field-name="ContactId"></lightning-input-field>
+                        <lightning-input-field field-name="AccountId"></lightning-input-field>
+                        <lightning-input-field field-name="Type"></lightning-input-field>
+                        <lightning-input-field field-name="Reason"></lightning-input-field>
+                     </div>
+                     <div>
+                        <lightning-input-field field-name="Status" required="true"></lightning-input-field>
+                        <lightning-input-field field-name="Priority"></lightning-input-field>
+                        <lightning-input-field field-name="Origin" required="true"></lightning-input-field>
+                     </div>
+                  </div>
+                  <h3 class="slds-section__title slds-theme--shade primaryPaletteBorder test-id__section-header-container" data-aura-rendered-by="478:1662;a">
+                     <span class="test-id__section-header-title section-header-title slds-p-horizontal--small slds-truncate" data-aura-rendered-by="480:1662;a">Web Information</span>
+                  </h3>
+                  <div class="caseForm1">
+                     <div>
+                        <lightning-input-field field-name="SuppliedEmail"></lightning-input-field>
+                        <lightning-input-field field-name="SuppliedName"></lightning-input-field>
+                     </div>
+                     <div>
+                        <lightning-input-field field-name="SuppliedCompany"></lightning-input-field>
+                        <lightning-input-field field-name="SuppliedPhone"></lightning-input-field>
+                     </div>
+                  </div>
+
+                  <h3 class="slds-section__title slds-theme--shade primaryPaletteBorder test-id__section-header-container" data-aura-rendered-by="478:1662;a">
+                     <span class="test-id__section-header-title section-header-title slds-p-horizontal--small slds-truncate" data-aura-rendered-by="480:1662;a">Additional Information</span>
+                  </h3>
+                  <div class="caseForm1">
+                     <div>
+                        <lightning-input-field field-name="Product__c"></lightning-input-field>
+                        <lightning-input-field field-name="PotentialLiability__c"></lightning-input-field>
+                     </div>
+                     <div>
+                        <lightning-input-field field-name="EngineeringReqNumber__c"></lightning-input-field>
+                        <lightning-input-field field-name="SLAViolation__c"></lightning-input-field>
+                     </div>
+                  </div>
+                  <h3 class="slds-section__title slds-theme--shade primaryPaletteBorder test-id__section-header-container" data-aura-rendered-by="478:1662;a">
+                     <span class="test-id__section-header-title section-header-title slds-p-horizontal--small slds-truncate" data-aura-rendered-by="480:1662;a">Description Information</span>
+                  </h3>
+                  <lightning-input-field field-name="Subject"></lightning-input-field>
+                  <lightning-input-field field-name="Description"></lightning-input-field>
+                  <lightning-input-field field-name="Comments"></lightning-input-field>
+                 </lightning-record-edit-form>
+                  
+              </div>
+              <!-- Modal/Popup Box LWC footer starts here -->
+              <div class="inlineFooter" data-aura-rendered-by="48:1725;a">
+                 <div class="button-container slds-text-align_right forceRecordEditActions" data-aura-rendered-by="33:1725;a" data-aura-class="forceRecordEditActions">
+                    <div class="actionsContainer" data-aura-rendered-by="34:1725;a">
+                       <div class="pageError hideEl" data-aura-rendered-by="35:1725;a">
+                          <div class="pageErrorIcon" data-aura-rendered-by="36:1725;a">
+                             <button class="slds-button slds-button--neutral pageErrorIconButton uiButton" aria-live="off" type="button" title="Error" aria-label data-aura-rendered-by="40:1725;a" data-aura-class="uiButton">
+                                <lightning-icon class="slds-icon-utility-warning slds-icon_container" data-data-rendering-service-uid="506" data-aura-rendered-by="38:1725;a">
+                                   <span class="slds-assistive-text">Error</span>
+                                </lightning-icon>
+                             </button>
+                          </div>
+                       </div>
+                       <div data-aura-rendered-by="2012:0">
+                          <div class="slds-float--left saveOption slds-form-element forceSaveOption" data-aura-rendered-by="2016:0" data-aura-class="forceSaveOption">
+                             <div class="slds-form-element__control" data-aura-rendered-by="2017:0">
+                                <span class="slds-checkbox" data-aura-rendered-by="2018:0">
+                                   <input type="checkbox" name="triggerOtherEmail" id="2013:0" data-aura-rendered-by="2023:0" class="uiInput uiInputCheckbox uiInput--default uiInput--checkbox" data-aura-class="uiInput uiInputCheckbox uiInput--default uiInput--checkbox" data-interactive-lib-uid="22">
+                                   <!--render facet: 2026:0-->
+                                   <label class="slds-checkbox__label uiLabel" for="2013:0" data-aura-rendered-by="2032:0" data-aura-class="uiLabel">
+                                      <span class="" data-aura-rendered-by="2033:0"></span>
+                                      <span class="slds-checkbox--faux" data-aura-rendered-by="2028:0"></span>
+                                      <span class="slds-form-element__label" data-aura-rendered-by="2029:0">Send notification email to contact</span>
+                                      <!--render facet: 2036:0-->
+                                    </label>
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="button-container-inner slds-float_right" data-aura-rendered-by="46:1725;a">
+                           <!--render facet: 2049:0-->
+                           <button onclick={closeModal} class="slds-button slds-button--neutral uiButton--neutral uiButton forceActionButton" aria-live="off" type="button" title="Cancel" aria-label="" data-aura-rendered-by="2042:0" data-aura-class="uiButton forceActionButton">
+                              <!--render facet: 2043:0-->
+                              <span class=" label bBody" dir="ltr" data-aura-rendered-by="2045:0">Cancel</span>
+                              <!--render facet: 2040:0-->
+                           </button>
+                           <!--render facet: 2065:0-->
+                           <button onclick={submitDetails} class="slds-button slds-button--neutral uiButton--neutral uiButton forceActionButton" aria-live="off" type="button" title="Save &amp; New" aria-label="" data-aura-rendered-by="2058:0" data-aura-class="uiButton forceActionButton">
+                              <!--render facet: 2059:0-->
+                              <span class=" label bBody" dir="ltr" data-aura-rendered-by="2061:0">Save &amp; New</span>
+                              <!--render facet: 2056:0-->
+                           </button>
+                           <!--render facet: 2081:0-->
+                           <button onclick={submitDetails} class="slds-button slds-button--neutral uiButton--brand uiButton forceActionButton" aria-live="off" type="button" title="Save" aria-label="" data-aura-rendered-by="2074:0" data-aura-class="uiButton forceActionButton">
+                              <!--render facet: 2075:0-->
+                              <span class=" label bBody" dir="ltr" data-aura-rendered-by="2077:0">Save</span>
+                              <!--render facet: 2072:0-->
+                           </button>
+                        </div>
+                    </div>
+                 </div>
+              </div>
+          </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open"></div>
+   </template>
+
+   <template if:true={isMyCasesModalOpen}>
+      <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+         <div class="slds-modal__container">
+            <header class="slds-modal__header">
+               <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                  <lightning-icon icon-name="utility:close"
+                     alternative-text="close"
+                     variant="inverse"
+                     size="small" ></lightning-icon>
+                  <span class="slds-assistive-text">Close</span>
+            </button>
+            <h2 class="slds-modal__title slds-hyphenate">My Cases</h2>
+            </header>
+            <lightning-datatable data={data}  columns={columns} key-field="id"></lightning-datatable>
+            <footer class="slds-modal__footer">
+               <lightning-button label="Cancel" onclick={closeModal}></lightning-button>
+               <lightning-button label="Save"></lightning-button>
+            </footer>
+         </div>
+         </section>
+         <div class="slds-backdrop slds-backdrop_open"></div>
+   </template>
+</template>
